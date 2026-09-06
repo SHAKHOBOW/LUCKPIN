@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LuckPin</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="user-info">
+        <div class="user-avatar" id="avatarText">U</div>
+        <div class="username" id="userName">User</div>
+      </div>
+      <div class="balance-card">
+        <span>⭐</span>
+        <span id="starBalance">0</span>
+      </div>
+    </header>
+
+    <div id="tab-cases" class="tab-content active">
+      <div class="case-card free-tier">
+        <div class="case-title">Kundalik Tekin Keys</div>
+        <img src="bear.png" class="case-image" alt="Daily Case">
+        <button class="btn-open btn-free" id="btnDailyCase" onclick="openCase('daily')">
+          Ochish (Tekin)
+        </button>
+      </div>
+
+      <div class="grid-2">
+        <div class="case-card">
+          <div class="case-title">50 ⭐ Keys</div>
+          <img src="gift50.png" class="case-image" alt="50 Star Case">
+          <button class="btn-open btn-paid" onclick="openCase('rare')">
+            50 ⭐ Ochish
+          </button>
+        </div>
+
+        <div class="case-card">
+          <div class="case-title">100 ⭐ Keys</div>
+          <img src="gift100.png" class="case-image" alt="100 Star Case">
+          <button class="btn-open btn-paid" onclick="openCase('epic')">
+            100 ⭐ Ochish
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-inventory" class="tab-content">
+      <h2 style="font-size: 18px; margin-bottom: 8px;">Mening Buyumlarim</h2>
+      <div class="inventory-grid" id="inventoryGrid"></div>
+    </div>
+
+    <div id="tab-referrals" class="tab-content">
+      <div class="case-card" style="text-align: center; gap: 12px;">
+        <h2 style="font-size: 18px;">Do'stlarni Taklif Qiling</h2>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.6);">Har bir do'stingiz uchun 5 ⭐ yulduz olasiz!</p>
+        <div style="font-size: 24px; font-weight: 800; color: #00b0ff;" id="refCount">0 ta taklif</div>
+        <button class="btn-open btn-free" onclick="shareRef()">Havolani Ulashish</button>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <div class="nav-btn active" onclick="switchTab('cases', this)">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+        <span>Keyslar</span>
+      </div>
+      <div class="nav-btn" onclick="switchTab('inventory', this)">
+        <svg viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 5h4v2h-4v-2zm0 4h4v2h-4v-2zm-4-4h2v2H8v-2zm0 4h2v2H8v-2z"/></svg>
+        <span>Inventar</span>
+      </div>
+      <div class="nav-btn" onclick="switchTab('referrals', this)">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        <span>Do'stlar</span>
+      </div>
+    </nav>
+  </div>
+
+  <div class="modal-overlay" id="rouletteModal">
+    <div class="modal-window">
+      <h3 style="font-size: 18px;" id="modalCaseName">Keys ochilmoqda...</h3>
+      <div class="roulette-container">
+        <div class="roulette-needle"></div>
+        <div class="roulette-track" id="rouletteTrack"></div>
+      </div>
+      <button class="btn-open btn-free" id="modalOkBtn" style="display: none;" onclick="closeModal()">Davom etish</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
